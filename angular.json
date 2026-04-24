@@ -1,32 +1,4 @@
 {
-  /*
-   * =====================================================
-   * FILE: angular.json
-   * =====================================================
-   * 
-   * What it does / ماذا يفعل:
-   * This is the MAIN Angular CONFIGURATION FILE.
-   * هذا هو ملف تكوين Angular الرئيسي
-   * 
-   * It configures:
-   * - Project name: "Portfolio"
-   * - Source folder: "src"
-   * - Build options (tsconfig, assets, styles)
-   * - Server options for SSR
-   * - Build targets: build, serve, test
-   * 
-   * Key sections / الأقسام الرئيسية:
-   * - $schema: JSON schema for validation
-   * - version: Config version (1)
-   * - cli: CLI settings (package manager, analytics)
-   * - projects: Your Angular projects
-   *   - Portfolio: Your main project
-   *     - projectType: "application" (or "library")
-   *     - root: Project root folder
-   *     - sourceRoot: Where source code lives (src/)
-   *     - prefix: Component prefix (app-)
-   *     - architect: Build/test targets
-   */
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
@@ -54,8 +26,13 @@
               }
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
+            ,
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
