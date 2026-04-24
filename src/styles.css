@@ -1,0 +1,28 @@
+/**
+ * =====================================================
+ * FILE: src/styles.css
+ * =====================================================
+ * 
+ * What it does / ماذا يفعل:
+ * This is the GLOBAL STYLES file.
+ * هذا هو ملف الأنماط العامة (global styles)
+ * 
+ * Styles here apply to the ENTIRE application.
+ * الأنماط هنا تطبق على التطبيق بالكامل
+ * 
+ * Currently: Empty (just a placeholder comment)
+ * Currently / حالياً: فارغ ( hanya تعليق توضيحي)
+ * 
+ * To add global styles:
+ * ```css
+ * body {
+ *   margin: 0;
+ *   font-family: sans-serif;
+ * }
+ * * {
+ *   box-sizing: border-box;
+ * }
+ * ```
+ */
+
+/* You can add global styles to this file, and also import other style files */

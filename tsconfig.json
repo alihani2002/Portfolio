@@ -1,0 +1,61 @@
+/* 
+ * =====================================================
+ * FILE: tsconfig.json
+ * =====================================================
+ * 
+ * What it does / ماذا يفعل:
+ * This is the TYPESCRIPT CONFIGURATION file.
+ * هذا هو ملف تكوين TypeScript
+ * 
+ * It tells TypeScript how to compile your code.
+ * 
+ * Key options / الخيارات الرئيسية:
+ * - strict: Enable all strict type checking
+ * - noImplicitOverride: Must use override keyword
+ * - noImplicitReturns: All paths must return a value
+ * - noFallthroughCasesInSwitch: Must handle all switch cases
+ * - skipLibCheck: Skip checking library types
+ * - importHelpers: Use helper functions from tslib
+ * - target: ES2022 (JavaScript version to output)
+ * - module: "preserve" (keep module syntax as is)
+ * 
+ * Angular-specific options:
+ * - enableI18nLegacyMessageIdFormat: Legacy message IDs
+ * - strictInjectionParameters: Strict DI
+ * - strictInputAccessModifiers: Strict @Input
+ * - strictTemplates: Strict template type checking
+ */
+
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}
