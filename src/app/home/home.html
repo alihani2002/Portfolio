@@ -1,0 +1,340 @@
+<div class="main-canvas" [class.loading]="loading">
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <!-- Hero Section -->
+  <section class="hero-block" id="home" *ngIf="profile">
+    <div class="hero-shell">
+      <div class="hero-copy">
+        <div class="availability-badge">
+          <span class="pulse-dot"></span>
+          Available for new opportunities
+        </div>
+
+        <p class="hero-kicker">{{ profile.title }}</p>
+
+        <h1 class="main-title">
+          Designing <span class="highlight">high-end</span><br />
+          digital experiences.
+        </h1>
+
+        <p class="hero-desc">{{ profile.bio | slice:0:180 }}...</p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="primary-btn">View Portfolio</a>
+          <a href="#contact" class="secondary-btn">Start a Conversation</a>
+          <a [href]="profile.cvUrl" target="_blank" rel="noopener noreferrer" class="ghost-action" *ngIf="profile.cvUrl">
+            Download Resume
+          </a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <span class="metric-value">{{ experiences.length }}</span>
+            <span class="metric-label">Experience entries</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">{{ projects.length }}</span>
+            <span class="metric-label">Selected projects</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-value">{{ skills.length }}</span>
+            <span class="metric-label">Skills mastered</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="image-frame" *ngIf="profile.imageUrl">
+          <img [src]="profile.imageUrl" [alt]="profile.fullName">
+          <div class="image-overlay"></div>
+          <div class="experience-tag">
+            <span>{{ experiences.length > 0 ? experiences.length + '+' : '1+' }} Years</span>
+            <p>of delivery-focused work</p>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <span class="hero-card-label">Profile Snapshot</span>
+          <h3>{{ profile.fullName }}</h3>
+          <p>{{ profile.location }}</p>
+          <div class="hero-card-links">
+            <a [href]="profile.linkedInUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a [href]="profile.gitHubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Me -->
+  <section class="panel about-panel" id="about" *ngIf="profile">
+    <div class="panel-inner">
+      <div class="panel-header">
+        <span class="tag">01. Introduction</span>
+        <h2>About my philosophy</h2>
+        <p class="section-copy">A concise overview of the work style, values, and design approach I bring to every project.</p>
+      </div>
+
+      <div class="split-content">
+        <div class="biography">
+          <p class="big-text">Transforming complex problems into elegant software solutions.</p>
+          <div class="bio-body">
+            {{ profile.bio }}
+          </div>
+        </div>
+
+        <div class="contact-mini">
+          <div class="mini-card">
+            <span class="m-label">Location</span>
+            <span class="m-value">{{ profile.location }}</span>
+          </div>
+          <div class="mini-card">
+            <span class="m-label">Phone</span>
+            <a [href]="'tel:' + profile.phone" class="m-value">{{ profile.phone }}</a>
+          </div>
+          <div class="mini-card">
+            <span class="m-label">Focus</span>
+            <span class="m-value">{{ profile.title }}</span>
+          </div>
+          <div class="mini-socials">
+            <a [href]="profile.gitHubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a [href]="profile.linkedInUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="panel exp-alt-section" id="resume">
+    <div class="panel-inner">
+      <div class="panel-header">
+        <span class="tag">02. Experience</span>
+        <h2>Selected work history</h2>
+        <p class="section-copy">A timeline of the projects and teams that shaped my engineering process and product thinking.</p>
+      </div>
+
+      <div class="architect-timeline">
+        <div class="exp-block" *ngFor="let exp of experiences">
+          <div class="exp-header">
+            <div class="exp-main">
+              <h3 class="exp-role">{{ exp.role }}</h3>
+              <p class="exp-company">{{ exp.companyName }}</p>
+            </div>
+            <div class="exp-meta">
+              <span class="exp-date">{{ exp.startDate | date:'MMM yyyy' }} — {{ exp.endDate ? (exp.endDate | date:'MMM yyyy') : 'Present' }}</span>
+            </div>
+          </div>
+          <div class="exp-details">
+            <p>{{ exp.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="edu-section-mini">
+        <h4 class="mini-section-title">Education background</h4>
+        <div class="edu-grid">
+          <div class="edu-card" *ngFor="let edu of educations">
+            <span class="edu-date">{{ edu.startDate | date:'yyyy' }}—{{ edu.endDate | date:'yyyy' }}</span>
+            <h5>{{ edu.degree }}</h5>
+            <p>{{ edu.institution }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="panel bg-dim" id="skills">
+    <div class="panel-inner">
+      <div class="panel-header">
+        <span class="tag">03. Expertise</span>
+        <h2>Technology stack</h2>
+        <p class="section-copy">The tools and practices I rely on to build reliable, maintainable, and user-focused interfaces.</p>
+      </div>
+
+      <div class="skill-cloud">
+        <div class="skill-category" *ngFor="let category of getSkillCategories()">
+          <h3 class="c-title">{{ category }}</h3>
+          <div class="skills-wrap">
+            <div class="skill-pill" *ngFor="let skill of getSkillsByCategory(category)">
+              <div class="pill-info">
+                <span class="p-name">{{ skill.name }}</span>
+                <span class="p-level">{{ skill.level }}%</span>
+              </div>
+              <div class="pill-track">
+                <div class="pill-fill" [style.width.%]="skill.level"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="panel" id="projects">
+    <div class="panel-inner">
+      <div class="panel-header">
+        <div class="left">
+          <span class="tag">04. Selected work</span>
+          <h2>Latest projects</h2>
+          <p class="section-copy">A small selection of recent builds with a focus on clarity, performance, and polish.</p>
+        </div>
+        <a routerLink="/projects" class="ghost-btn">Case studies →</a>
+      </div>
+
+      <div class="project-showcase">
+        <div class="case-card" *ngFor="let project of projects.slice(0, 3)">
+          <div class="case-image">
+            <img [src]="project.imageUrl" [alt]="project.title" *ngIf="project.imageUrl">
+            <div class="case-overlay">
+              <div class="case-links">
+                <a [href]="project.gitHubUrl" target="_blank" rel="noopener noreferrer" *ngIf="project.gitHubUrl">Build</a>
+                <a [href]="project.liveDemoUrl" target="_blank" rel="noopener noreferrer" *ngIf="project.liveDemoUrl">Live</a>
+              </div>
+            </div>
+          </div>
+          <div class="case-details">
+            <span class="case-date">{{ project.createdAt | date:'yyyy' }}</span>
+            <h3 class="case-title">{{ project.title }}</h3>
+            <div class="case-text" [class.expanded]="isProjectExpanded(project.id)">
+              <p>{{ project.description }}</p>
+            </div>
+            <button class="expand-btn" (click)="toggleProjectDescription(project.id)" *ngIf="project.description! && project.description.length > 100">
+              {{ isProjectExpanded(project.id) ? 'Collapse' : 'Read More' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="panel contact-panel" id="contact">
+    <div class="panel-inner">
+      <div class="contact-wrap">
+        <div class="contact-intro">
+          <span class="tag">05. Contact</span>
+          <h2>Let’s build something meaningful</h2>
+          <p class="section-copy">If you need a focused developer who can move from concept to shipping with care, I’m ready to talk.</p>
+
+          <div class="contact-summary">
+            <div class="summary-item">
+              <span class="summary-label">Response</span>
+              <span class="summary-value">Quick turnaround</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Location</span>
+              <span class="summary-value">{{ profile?.location }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Focus</span>
+              <span class="summary-value">{{ profile?.title }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <h3 class="form-quote">Start a <span class="highlight">conversation</span>.</h3>
+
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="premium-form">
+            <div class="form-grid-row">
+              <div class="premium-group">
+                <input type="text" formControlName="name" required placeholder="Name">
+              </div>
+              <div class="premium-group">
+                <input type="email" formControlName="email" required placeholder="Email">
+              </div>
+            </div>
+
+            <div class="premium-group">
+              <input type="text" formControlName="subject" required placeholder="Subject">
+            </div>
+
+            <div class="premium-group">
+              <textarea formControlName="message" rows="4" required placeholder="Message"></textarea>
+            </div>
+
+            <button type="submit" class="cta-submit" [disabled]="contactForm.invalid || submitting">
+              {{ submitting ? 'Sending...' : 'Start Project' }}
+            </button>
+
+            <div class="success-pop" *ngIf="submitSuccess">Inquiry received. Thank you!</div>
+            <div class="error-pop" *ngIf="submitError">{{ submitError }}</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="master-footer">
+    <div class="footer-grid">
+      <div class="footer-brand" *ngIf="profile">
+        <div class="f-logo">A</div>
+        <h3>{{ profile.fullName }}</h3>
+        <p>{{ profile.title }}</p>
+      </div>
+
+      <div class="footer-nav">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a [routerLink]="['/home']" fragment="home">Home</a></li>
+          <li><a [routerLink]="['/home']" fragment="projects">Work</a></li>
+          <li><a [routerLink]="['/home']" fragment="skills">Expertise</a></li>
+          <li><a [routerLink]="['/home']" fragment="resume">Experience</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-social">
+        <h4>Connect</h4>
+        <ul>
+          <li><a [href]="profile?.linkedInUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a [href]="profile?.gitHubUrl" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li *ngIf="!(isAuthenticated$ | async)">
+            <a routerLink="/login" class="portal-link">Portal Access</a>
+          </li>
+          <li *ngIf="isAuthenticated$ | async">
+            <a routerLink="/dashboard" class="portal-link">Dashboard</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-actions">
+        <h4>Appearance</h4>
+        <button class="theme-btn footer-theme" (click)="toggleTheme()" [title]="(theme$ | async) === 'dark' ? 'Light Mode' : 'Dark Mode'">
+          <div class="icon-orbit" [class.rotated]="(theme$ | async) === 'light'">
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </div>
+        </button>
+      </div>
+
+      <div class="footer-credits">
+        <p>&copy; {{ currentYear }} Architectural Portfolio.</p>
+        <span>Designed for excellence.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Floating Nav -->
+  <div class="mobile-fob" (click)="scrollToTop()" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </div>
+</div>

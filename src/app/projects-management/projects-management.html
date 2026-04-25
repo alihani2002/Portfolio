@@ -1,0 +1,102 @@
+<div class="management-container">
+  <header class="m-header">
+    <div class="header-content">
+      <h1>Projects Management</h1>
+      <p>Showcase and control your creative portfolio.</p>
+    </div>
+    <button class="add-btn" (click)="openCreateModal()">
+      <span>+</span> New Project
+    </button>
+  </header>
+
+  <div class="error-bar" *ngIf="error()">{{ error() }}</div>
+
+  <div class="loading-state" *ngIf="isLoading()">
+    <div class="spinner"></div>
+    <p>Retrieving projects...</p>
+  </div>
+
+  <div class="empty-state" *ngIf="!isLoading() && projects().length === 0">
+    <p>No projects found. Use the button above to add your first project.</p>
+  </div>
+
+  <div class="grid-wrap" *ngIf="!isLoading() && projects().length > 0">
+    <div class="p-card" *ngFor="let project of projects()">
+      <div class="p-image">
+        <img [src]="project.imageUrl" [alt]="project.title" *ngIf="project.imageUrl">
+        <div class="p-image-placeholder" *ngIf="!project.imageUrl">No Image</div>
+      </div>
+      <div class="p-content">
+        <h3>{{ project.title }}</h3>
+        <p class="p-desc">{{ project.description | slice:0:100 }}...</p>
+        <div class="p-meta">
+           <span>Created: {{ project.createdAt | date:'mediumDate' }}</span>
+        </div>
+        <div class="p-actions">
+           <button class="edit-icon" (click)="editProject(project)" title="Edit">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4L18.5 2.5z"></path></svg>
+           </button>
+           <button class="delete-icon" (click)="deleteProject(project.id)" title="Delete">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" *ngIf="showModal()">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>{{ isEditing() ? 'Edit Project' : 'Add Project' }}</h2>
+        <button class="close-modal" (click)="closeModal()">&times;</button>
+      </div>
+      
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="modal-form">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" formControlName="title" placeholder="Project name">
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea formControlName="description" rows="4" placeholder="Brief project summary"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>GitHub URL</label>
+            <input type="url" formControlName="gitHubUrl" placeholder="https://github.com/...">
+          </div>
+          <div class="form-group">
+            <label>Live URL</label>
+            <input type="url" formControlName="liveDemoUrl" placeholder="https://...">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Project Date</label>
+          <input type="date" formControlName="createdAt">
+        </div>
+
+        <div class="file-upload-block">
+          <label>Project Cover Image</label>
+          <div class="upload-zone" (click)="fileInput.click()">
+             <img [src]="imagePreview" *ngIf="imagePreview" alt="Preview">
+             <div class="upload-prompt" *ngIf="!imagePreview">
+                <span>+</span> Upload Image
+             </div>
+          </div>
+          <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="save-btn" [disabled]="projectForm.invalid || isSubmitting()">
+            {{ isSubmitting() ? 'Saving...' : 'Save Project' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

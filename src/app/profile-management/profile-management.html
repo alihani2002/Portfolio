@@ -1,0 +1,90 @@
+<div class="management-container">
+  <header class="m-header">
+    <div class="header-content">
+      <h1>Profile Management</h1>
+      <p>Configure your public identity and contact details.</p>
+    </div>
+  </header>
+
+  <div class="error-bar" *ngIf="error()">{{ error() }}</div>
+
+  <div class="loading-state" *ngIf="isLoading()">
+    <div class="spinner"></div>
+    <p>Loading profile...</p>
+  </div>
+
+  <div class="profile-editor-card" *ngIf="!isLoading()">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="premium-form-layout">
+       <div class="editor-sidebar">
+          <div class="avatar-upload" (click)="imgInput.click()">
+             <img [src]="imagePreview" *ngIf="imagePreview" alt="Profile">
+             <div class="avatar-overlay">
+                <span>Edit Photo</span>
+             </div>
+             <input type="file" #imgInput (change)="onImageSelected($event)" accept="image/*" hidden>
+          </div>
+          
+          <div class="file-card">
+             <label>Resume (CV) PDF</label>
+             <button type="button" class="file-btn" (click)="cvInput.click()">
+                {{ selectedCv ? selectedCv.name : (profileData()?.cvUrl ? 'Update CV' : 'Upload CV') }}
+             </button>
+             <input type="file" #cvInput (change)="onCvSelected($event)" accept=".pdf" hidden>
+          </div>
+       </div>
+
+       <div class="editor-main">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" formControlName="fullName">
+            </div>
+            <div class="form-group">
+              <label>Professional Title</label>
+              <input type="text" formControlName="title">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Biography</label>
+            <textarea formControlName="bio" rows="6"></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" formControlName="email">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="text" formControlName="phone">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Location</label>
+              <input type="text" formControlName="location">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>LinkedIn URL</label>
+              <input type="url" formControlName="linkedInUrl">
+            </div>
+            <div class="form-group">
+              <label>GitHub URL</label>
+              <input type="url" formControlName="gitHubUrl">
+            </div>
+          </div>
+
+          <div class="editor-footer">
+            <button type="submit" class="save-btn large" [disabled]="profileForm.invalid || isSubmitting()">
+              {{ isSubmitting() ? 'Saving Changes...' : 'Update Profile' }}
+            </button>
+          </div>
+       </div>
+    </form>
+  </div>
+</div>

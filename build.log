@@ -1,0 +1,54 @@
+
+> portfolio@0.0.0 build
+> ng build
+
+[33m❯[39m Building...
+[32m✔[39m Building...
+[35mBrowser bundles[39m     
+[1mInitial chunk files[22m [2m | [22m[1mNames[22m           [2m | [22m [1mRaw size[22m[2m | [22m[1mEstimated transfer size[22m
+[32mmain-FNBCMOYH.js[39m    [2m | [22m[2mmain[22m            [2m | [22m[36m498.63 kB[39m[2m | [22m              [36m112.04 kB[39m
+[32mstyles-LXPT72JG.css[39m [2m | [22m[2mstyles[22m          [2m | [22m[36m250.40 kB[39m[2m | [22m               [36m26.52 kB[39m
+[32mscripts-TTWY4XDY.js[39m [2m | [22m[2mscripts[22m         [2m | [22m [36m80.45 kB[39m[2m | [22m               [36m21.60 kB[39m
+
+[1m [22m                   [2m | [22m[1mInitial total[22m   [2m | [22m[1m[93m829.49 kB[39m[22m[2m | [22m              [1m160.17 kB[22m
+
+
+[35mServer bundles[39m      
+[1mInitial chunk files[22m [2m | [22m[1mNames[22m           [2m | [22m [1mRaw size[22m
+[32mmain.server.mjs[39m     [2m | [22m[2mmain.server[22m     [2m | [22m[36m934.48 kB[39m[2m | [22m                       
+[32mserver.mjs[39m          [2m | [22m[2mserver[22m          [2m | [22m[36m811.98 kB[39m[2m | [22m                       
+[32mpolyfills.server.mjs[39m[2m | [22m[2mpolyfills.server[22m[2m | [22m[36m233.73 kB[39m[2m | [22m                       
+[32mchunk-BBJ2OP3G.mjs[39m  [2m | [22m[2m-[22m               [2m | [22m  [36m1.34 kB[39m[2m | [22m                       
+[32mchunk-T55IDOPT.mjs[39m  [2m | [22m[2m-[22m               [2m | [22m[36m976 bytes[39m[2m | [22m                       
+
+[1mLazy chunk files[22m    [2m | [22m[1mNames[22m           [2m | [22m [1mRaw size[22m
+[32mchunk-BP7AI3FB.mjs[39m  [2m | [22m[2mxhr2[22m            [2m | [22m [36m12.17 kB[39m[2m | [22m                       
+[32mchunk-N3SI5I4Q.mjs[39m  [2m | [22m[2mxhr2[22m            [2m | [22m [36m12.07 kB[39m[2m | [22m                       
+
+[35mPrerendered 10 static routes.[39m
+Application bundle generation failed. [35.213 seconds] - 2026-04-25T16:01:10.680Z
+
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mbundle initial exceeded maximum budget. Budget 500.00 kB was not met by 329.49 kB with a total of 829.49 kB.[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1msrc/app/navbar/navbar.css exceeded maximum budget. Budget 4.00 kB was not met by 405 bytes with a total of 4.41 kB.[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1msrc/app/log-in/log-in.css exceeded maximum budget. Budget 4.00 kB was not met by 299 bytes with a total of 4.30 kB.[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1msrc/app/dashboard/dashboard.css exceeded maximum budget. Budget 4.00 kB was not met by 1.55 kB with a total of 5.55 kB.[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1msrc/app/about/about.css exceeded maximum budget. Budget 4.00 kB was not met by 144 bytes with a total of 4.14 kB.[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1msrc/app/projects-management/projects-management.css exceeded maximum budget. Budget 4.00 kB was not met by 380 bytes with a total of 4.38 kB.[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1msrc/app/home/home.css exceeded maximum budget. Budget 4.00 kB was not met by 12.60 kB with a total of 16.60 kB.[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1msrc/app/home/home.css exceeded maximum budget. Budget 8.00 kB was not met by 8.60 kB with a total of 16.60 kB.[0m
+
+[39m[22m

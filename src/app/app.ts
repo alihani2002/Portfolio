@@ -18,6 +18,7 @@
  * @Component decorators / مزايا الكومبوننت:
  * - selector: 'app-root' = the HTML tag to place this component
  * - imports: [RouterOutlet] = allows using <router-outlet> for navigation
+ * - imports: [Navbar] = navigation component
  * - templateUrl: points to app.html for the view
  * - styleUrl: points to app.css for styles
  * 
@@ -28,11 +29,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './navbar/navbar';
-import { About } from './about/about';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet , Navbar, About],
+  imports: [RouterOutlet, Navbar],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

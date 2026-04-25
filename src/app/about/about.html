@@ -1,1 +1,193 @@
-<p>about works!</p>
+<!-- 
+  =====================================================
+  FILE: src/app/about/about.html
+  =====================================================
+  
+  What it does / ماذا يفعل:
+  This is the ABOUT COMPONENT TEMPLATE - detailed professional profile.
+  هذا هو قالب صفحة التعريف - الملف الشخصي المهني المفصل
+  
+  Features:
+  - Professional layout with personal info
+  - Skills visualization
+  - Experience timeline
+  - Education background
+-->
+
+<section class="about">
+  <!-- Profile Header -->
+  <header class="about-header">
+    <div class="profile-image">
+      <img src="assets/profile.jpg" alt="Ahmed Hassan" class="profile-img">
+    </div>
+    <div class="profile-info">
+      <h1 class="profile-name">Ahmed Hassan</h1>
+      <p class="profile-title">Full-Stack Developer</p>
+      <div class="profile-stats">
+        <div class="stat">
+          <span class="stat-number">5+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Projects Completed</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Technologies Mastered</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Bio -->
+  <section class="about-bio">
+    <h2>About Me</h2>
+    <p>
+      I'm a passionate full-stack developer with extensive experience in building scalable web applications.
+      My expertise spans frontend frameworks like Angular and React, backend technologies including Node.js and Python,
+      and database systems ranging from SQL to NoSQL solutions.
+    </p>
+    <p>
+      I thrive on solving complex problems and turning ideas into functional, beautiful applications.
+      My approach combines clean code principles with user-centered design to deliver products that
+      not only work well but also provide exceptional user experiences.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="about-skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-container">
+      <div class="skill-category">
+        <h3>Frontend Development</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Angular</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Vue.js</span>
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Bootstrap</span>
+          <span class="skill-tag">Tailwind CSS</span>
+          <span class="skill-tag">SASS/SCSS</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Backend Development</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Express.js</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Django</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">GraphQL</span>
+          <span class="skill-tag">PHP</span>
+          <span class="skill-tag">Laravel</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>Databases</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">Redis</span>
+          <span class="skill-tag">SQLite</span>
+          <span class="skill-tag">Firebase</span>
+        </div>
+      </div>
+      
+      <div class="skill-category">
+        <h3>DevOps & Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">CI/CD</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Azure</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">Agile/Scrum</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Timeline -->
+  <section class="about-experience">
+    <h2>Professional Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">2022 - Present</div>
+        <div class="timeline-content">
+          <h3>Senior Full-Stack Developer</h3>
+          <p class="company">Tech Solutions Inc.</p>
+          <ul>
+            <li>Led development of enterprise-level web applications using Angular and Node.js</li>
+            <li>Implemented microservices architecture improving system scalability by 40%</li>
+            <li>Mentored junior developers and conducted code reviews</li>
+            <li>Optimized database queries reducing response time by 60%</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-date">2020 - 2022</div>
+        <div class="timeline-content">
+          <h3>Full-Stack Developer</h3>
+          <p class="company">Web Innovations Ltd.</p>
+          <ul>
+            <li>Developed responsive web applications using React and Python/Django</li>
+            <li>Integrated third-party APIs and payment gateways</li>
+            <li>Implemented automated testing suites improving code quality</li>
+            <li>Collaborated with UX/UI designers to implement pixel-perfect designs</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-date">2018 - 2020</div>
+        <div class="timeline-content">
+          <h3>Junior Web Developer</h3>
+          <p class="company">StartupXYZ</p>
+          <ul>
+            <li>Built and maintained company websites using PHP and MySQL</li>
+            <li>Created RESTful APIs for mobile applications</li>
+            <li>Participated in agile development processes</li>
+            <li>Learned modern frontend frameworks and best practices</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="about-education">
+    <h2>Education</h2>
+    <div class="education-grid">
+      <div class="education-item">
+        <h3>Bachelor of Science in Computer Science</h3>
+        <p class="institution">University of Technology</p>
+        <p class="year">2014 - 2018</p>
+        <p>
+          Graduated with honors, focusing on software engineering and web technologies.
+          Completed senior project on real-time chat application using WebSocket technology.
+        </p>
+      </div>
+      
+      <div class="education-item">
+        <h3>Certifications</h3>
+        <div class="certificates">
+          <span class="certificate">AWS Certified Developer</span>
+          <span class="certificate">Google Cloud Professional Developer</span>
+          <span class="certificate">MongoDB Certified Developer</span>
+          <span class="certificate">Certified Scrum Developer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

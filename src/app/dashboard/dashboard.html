@@ -1,0 +1,181 @@
+<!--
+  =====================================================
+  FILE: src/app/dashboard/dashboard.html
+  =====================================================
+
+  What it does / ماذا يفعل:
+  This is the DASHBOARD TEMPLATE - displays portfolio overview.
+  هذا هو قالب Dashboard - يعرض نظرة عامة على المحفظة
+
+  Shows summary statistics and quick access to management sections
+-->
+
+<div class="dashboard-wrap">
+  <header class="db-header">
+    <div class="title-area">
+      <h1>Portfolio Dashboard</h1>
+      <p class="subtitle">Overview of your professional presence</p>
+    </div>
+    <div class="action-area">
+      <button class="btn-refresh" (click)="refreshData()" [disabled]="isLoading">
+        <svg *ngIf="!isLoading" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+        <span class="spinner" *ngIf="isLoading"></span>
+        {{ isLoading ? 'Loading...' : 'Refresh' }}
+      </button>
+    </div>
+  </header>
+
+  <div class="alert alert-error" *ngIf="error">
+    <div class="alert-icon">!</div>
+    <div class="alert-msg">{{ error }}</div>
+    <button class="alert-close" (click)="error = ''">&times;</button>
+  </div>
+
+  <!-- Summary Navigation Grid -->
+  <div class="stats-grid">
+    <!-- Profile Card -->
+    <div class="stat-card">
+      <div class="card-icon profile-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      </div>
+      <div class="card-info">
+        <h3>Portal</h3>
+        <p>Profile Details</p>
+      </div>
+      <a routerLink="/profile" class="card-link">View Details</a>
+    </div>
+
+    <!-- Education Card -->
+    <div class="stat-card" [class.loading]="loadingStates.education">
+      <div class="card-icon edu-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 5 2 10l10 5 10-5z"></path><path d="M6 12.5V16a6.3 6.3 0 0 0 12 0v-3.5"></path></svg>
+      </div>
+      <div class="card-info">
+        <div class="skeleton-text" *ngIf="loadingStates.education"></div>
+        <h3 *ngIf="!loadingStates.education">{{ educations.length }}</h3>
+        <p>Education Records</p>
+      </div>
+      <a routerLink="/education" class="card-link">Manage</a>
+    </div>
+
+    <!-- Experience Card -->
+    <div class="stat-card" [class.loading]="loadingStates.experience">
+      <div class="card-icon exp-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      </div>
+      <div class="card-info">
+        <div class="skeleton-text" *ngIf="loadingStates.experience"></div>
+        <h3 *ngIf="!loadingStates.experience">{{ experiences.length }}</h3>
+        <p>Experiences</p>
+      </div>
+      <a routerLink="/experience" class="card-link">Manage</a>
+    </div>
+
+    <!-- Projects Card -->
+    <div class="stat-card" [class.loading]="loadingStates.projects">
+      <div class="card-icon proj-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+      </div>
+      <div class="card-info">
+        <div class="skeleton-text" *ngIf="loadingStates.projects"></div>
+        <h3 *ngIf="!loadingStates.projects">{{ projects.length }}</h3>
+        <p>Active Projects</p>
+      </div>
+      <a routerLink="/projects" class="card-link">Manage</a>
+    </div>
+
+    <!-- Skills Card -->
+    <div class="stat-card" [class.loading]="loadingStates.skills">
+      <div class="card-icon skill-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      </div>
+      <div class="card-info">
+        <div class="skeleton-text" *ngIf="loadingStates.skills"></div>
+        <h3 *ngIf="!loadingStates.skills">{{ skills.length }}</h3>
+        <p>Skills & Expertises</p>
+      </div>
+      <a routerLink="/skills" class="card-link">Manage</a>
+    </div>
+
+    <!-- Messages Card -->
+    <div class="stat-card" [class.loading]="loadingStates.messages">
+      <div class="card-icon msg-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      </div>
+      <div class="card-info">
+        <div class="skeleton-text" *ngIf="loadingStates.messages"></div>
+        <h3 *ngIf="!loadingStates.messages">{{ contactMessages.length }}</h3>
+        <p>Unread Messages</p>
+      </div>
+      <a routerLink="/contact-messages" class="card-link">View All</a>
+    </div>
+  </div>
+
+  <div class="details-grid">
+    <!-- Messages Detail (Only) -->
+    <section class="details-section full-width" [class.loading]="loadingStates.messages">
+      <div class="section-header">
+        <h2>Recent Messages</h2>
+        <a routerLink="/contact-messages">View All</a>
+      </div>
+      <div class="section-content">
+        <div class="skeleton-list" *ngIf="loadingStates.messages">
+          <div class="skeleton-item"></div>
+          <div class="skeleton-item"></div>
+          <div class="skeleton-item"></div>
+        </div>
+        <div class="empty-state" *ngIf="!loadingStates.messages && contactMessages.length === 0">
+          <p>No messages yet. They will appear here when someone contacts you.</p>
+        </div>
+        <ul class="data-list" *ngIf="!loadingStates.messages && contactMessages.length > 0">
+          <li *ngFor="let item of contactMessages.slice(0, 5)" (click)="viewMessage(item)" class="clickable-item">
+            <div class="item-main">
+              <span class="item-sender">{{ item.name }}</span>
+              <span class="item-subject">{{ item.subject || 'No Subject' }}</span>
+              <span class="item-preview" *ngIf="item.message">{{ item.message | slice:0:60 }}...</span>
+            </div>
+            <div class="item-date">{{ item.sentAt | date:'short' }}</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <!-- Message Detail Modal -->
+  <div class="modal-overlay" *ngIf="selectedMessage" (click)="closeModal()">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Message Details</h2>
+        <button class="close-modal" (click)="closeModal()">&times;</button>
+      </div>
+      
+      <div class="msg-detail-body">
+         <div class="msg-pair">
+            <label>From</label>
+            <p>{{ selectedMessage.name }} ({{ selectedMessage.email }})</p>
+         </div>
+         <div class="msg-pair">
+            <label>Subject</label>
+            <p>{{ selectedMessage.subject || 'N/A' }}</p>
+         </div>
+         <div class="msg-pair">
+            <label>Sent On</label>
+            <p>{{ selectedMessage.sentAt | date:'full' }}</p>
+         </div>
+         <div class="msg-pair large">
+            <label>Message Content</label>
+            <div class="content-box-inner" style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 12px; margin-top: 0.5rem; line-height: 1.6;">
+               {{ selectedMessage.message }}
+            </div>
+         </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel-btn" (click)="closeModal()">Close</button>
+        <button class="delete-icon" (click)="deleteMessage(selectedMessage.id)" style="margin-left: auto;">
+           Delete Permanent
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
