@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://alyhani-dashboard.runasp.net/api/',
+  apiUrl: '', // Set via .env.production at build time
 };

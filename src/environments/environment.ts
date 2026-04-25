@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://alyhani-dashboard.runasp.net/api/',
+  apiUrl: '', // Set via .env.local → npm start auto-generates environment.local.ts
 };
