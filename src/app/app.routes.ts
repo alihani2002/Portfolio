@@ -1,23 +1,3 @@
-/**
- * =====================================================
- * FILE: src/app/app.routes.ts
- * =====================================================
- * 
- * What it does / ماذا يفعل:
- * This file DEFINES the ROUTES (navigation paths) for the app.
- * هذا الملف يعرف مسارات التصفح للتطبيق
- * 
- * Routes: Array that maps URLs to components
- * when user visits /dashboard, show DashboardComponent, etc.
- * 
- * Key route options:
- * - path: URL path (e.g., '', 'dashboard', 'about')
- * - component: Component to display
- * - redirectTo: Redirect to another path
- * - pathMatch: 'full' or 'prefix'
- * - **: Wildcard for 404 (must be last)
- */
-
 import { Routes } from '@angular/router';
 
 import { Dashboard } from './dashboard/dashboard';
